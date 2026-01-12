@@ -1,0 +1,373 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --paper-color: #fefefe;
+    --paper-shadow: #e8e8e8;
+    --accent-color: #d4a574;
+    --text-color: #1a1a1a;
+    --bg-color: #f5f1eb;
+    --countdown-bg: rgba(255, 255, 255, 0.15);
+    --countdown-border: rgba(212, 165, 116, 0.3);
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    min-height: 100vh;
+    background: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+.minimal-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f5f1eb 0%, #e8e0d6 100%);
+    z-index: 0;
+}
+
+/* Floating Elements */
+.floating-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.15;
+    animation: float 20s infinite linear;
+    pointer-events: none;
+}
+
+.floating-element:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 18s; }
+.floating-element:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 22s; }
+.floating-element:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 20s; }
+.floating-element:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 19s; }
+.floating-element:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 21s; }
+.floating-element:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 23s; }
+.floating-element:nth-child(7) { left: 70%; animation-delay: 2.5s; animation-duration: 18s; }
+.floating-element:nth-child(8) { left: 80%; animation-delay: 4.5s; animation-duration: 20s; }
+.floating-element:nth-child(9) { left: 90%; animation-delay: 1.5s; animation-duration: 22s; }
+.floating-element:nth-child(10) { left: 15%; animation-delay: 6s; animation-duration: 19s; }
+.floating-element:nth-child(11) { left: 25%; animation-delay: 3.5s; animation-duration: 21s; }
+.floating-element:nth-child(12) { left: 35%; animation-delay: 5.5s; animation-duration: 18s; }
+.floating-element:nth-child(13) { left: 45%; animation-delay: 7s; animation-duration: 20s; }
+.floating-element:nth-child(14) { left: 55%; animation-delay: 2s; animation-duration: 22s; }
+.floating-element:nth-child(15) { left: 65%; animation-delay: 4s; animation-duration: 19s; }
+.floating-element:nth-child(16) { left: 75%; animation-delay: 6.5s; animation-duration: 21s; }
+.floating-element:nth-child(17) { left: 85%; animation-delay: 1s; animation-duration: 18s; }
+.floating-element:nth-child(18) { left: 95%; animation-delay: 3s; animation-duration: 20s; }
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.15;
+    }
+    90% {
+        opacity: 0.15;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Main Container */
+.countdown-container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.content-wrapper {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Header Section */
+.header-section {
+    margin-bottom: 3rem;
+    animation: fadeInDown 1s ease-out;
+}
+
+.main-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    font-style: italic;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Countdown Section */
+.countdown-section {
+    margin: 4rem 0;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.countdown-card {
+    background: var(--countdown-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 3rem 2rem;
+    border: 2px solid var(--countdown-border);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+}
+
+.time-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.time-value.updating {
+    transform: scale(1.1);
+    color: var(--accent-color);
+}
+
+.time-label {
+    font-size: 1rem;
+    color: var(--text-color);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.separator {
+    font-size: 3rem;
+    color: var(--accent-color);
+    font-weight: 300;
+    opacity: 0.5;
+}
+
+/* Message Section */
+.message-section {
+    margin: 4rem 0;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.message-paper {
+    background: var(--paper-color);
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    position: relative;
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.paper-line {
+    position: absolute;
+    left: 80px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(212, 165, 116, 0.2);
+}
+
+.message-content {
+    padding-left: 2rem;
+}
+
+.message-content h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.message-content p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.excitement-text {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(212, 165, 116, 0.05);
+    border-left: 3px solid var(--accent-color);
+    border-radius: 2px;
+    text-align: center;
+}
+
+.excitement-text p {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.celebration-hint {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: rgba(212, 165, 116, 0.1);
+    border-radius: 20px;
+    display: inline-block;
+    animation: fadeIn 1s ease-out 0.9s both;
+}
+
+.celebration-hint p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    color: var(--text-color);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .countdown-card {
+        padding: 2rem 1rem;
+    }
+    
+    .countdown-display {
+        gap: 0.8rem;
+    }
+    
+    .time-unit {
+        min-width: 70px;
+    }
+    
+    .time-value {
+        font-size: 2.5rem;
+    }
+    
+    .time-label {
+        font-size: 0.85rem;
+    }
+    
+    .separator {
+        font-size: 2rem;
+    }
+    
+    .message-paper {
+        padding: 2rem 1.5rem;
+    }
+    
+    .message-content {
+        padding-left: 1rem;
+    }
+    
+    .paper-line {
+        left: 50px;
+    }
+    
+    .message-content h2 {
+        font-size: 2rem;
+    }
+    
+    .message-content p {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown-display {
+        gap: 0.5rem;
+    }
+    
+    .time-unit {
+        min-width: 60px;
+    }
+    
+    .time-value {
+        font-size: 2rem;
+    }
+    
+    .separator {
+        font-size: 1.5rem;
+    }
+}
