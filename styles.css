@@ -1,4 +1,4 @@
-* {
+﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -7,11 +7,11 @@
 :root {
     --paper-color: #fefefe;
     --paper-shadow: #e8e8e8;
-    --accent-color: #d4a574;
+    --accent-color: #4f7cff;
     --text-color: #1a1a1a;
-    --bg-color: #f5f1eb;
+    --bg-color: #eef4ff;
     --countdown-bg: rgba(255, 255, 255, 0.15);
-    --countdown-border: rgba(212, 165, 116, 0.3);
+    --countdown-border: rgba(79, 124, 255, 0.3);
 }
 
 body {
@@ -28,7 +28,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #f5f1eb 0%, #e8e0d6 100%);
+    background: linear-gradient(135deg, #eef4ff 0%, #dbe8ff 100%);
     z-index: 0;
 }
 
@@ -213,7 +213,7 @@ body {
     top: 0;
     bottom: 0;
     width: 1px;
-    background: rgba(212, 165, 116, 0.2);
+    background: rgba(79, 124, 255, 0.2);
 }
 
 .message-content {
@@ -240,7 +240,7 @@ body {
 .excitement-text {
     margin-top: 2rem;
     padding: 1.5rem;
-    background: rgba(212, 165, 116, 0.05);
+    background: rgba(79, 124, 255, 0.08);
     border-left: 3px solid var(--accent-color);
     border-radius: 2px;
     text-align: center;
@@ -255,7 +255,7 @@ body {
 .celebration-hint {
     margin-top: 3rem;
     padding: 1.5rem;
-    background: rgba(212, 165, 116, 0.1);
+    background: rgba(79, 124, 255, 0.12);
     border-radius: 20px;
     display: inline-block;
     animation: fadeIn 1s ease-out 0.9s both;
@@ -371,3 +371,4 @@ body {
         font-size: 1.5rem;
     }
 }
+
