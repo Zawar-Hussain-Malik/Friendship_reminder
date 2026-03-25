@@ -44,46 +44,69 @@ body {
     overflow: hidden;
 }
 
+/* Legacy support for old elements */
 .floating-element {
     position: absolute;
-    font-size: 1.5rem;
-    opacity: 0.15;
-    animation: float 20s infinite linear;
+    font-size: 1.2rem;
+    opacity: 0.08;
+    animation: float 25s infinite linear;
     pointer-events: none;
+    color: #4f7cff;
 }
 
-.floating-element:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 18s; }
-.floating-element:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 22s; }
-.floating-element:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 20s; }
-.floating-element:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 19s; }
-.floating-element:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 21s; }
-.floating-element:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 23s; }
-.floating-element:nth-child(7) { left: 70%; animation-delay: 2.5s; animation-duration: 18s; }
-.floating-element:nth-child(8) { left: 80%; animation-delay: 4.5s; animation-duration: 20s; }
-.floating-element:nth-child(9) { left: 90%; animation-delay: 1.5s; animation-duration: 22s; }
-.floating-element:nth-child(10) { left: 15%; animation-delay: 6s; animation-duration: 19s; }
-.floating-element:nth-child(11) { left: 25%; animation-delay: 3.5s; animation-duration: 21s; }
-.floating-element:nth-child(12) { left: 35%; animation-delay: 5.5s; animation-duration: 18s; }
-.floating-element:nth-child(13) { left: 45%; animation-delay: 7s; animation-duration: 20s; }
-.floating-element:nth-child(14) { left: 55%; animation-delay: 2s; animation-duration: 22s; }
-.floating-element:nth-child(15) { left: 65%; animation-delay: 4s; animation-duration: 19s; }
-.floating-element:nth-child(16) { left: 75%; animation-delay: 6.5s; animation-duration: 21s; }
-.floating-element:nth-child(17) { left: 85%; animation-delay: 1s; animation-duration: 18s; }
-.floating-element:nth-child(18) { left: 95%; animation-delay: 3s; animation-duration: 20s; }
+/* Beautiful flowing flowers */
+.floating-flower {
+    position: absolute;
+    pointer-events: none;
+    filter: blur(0.3px);
+    animation: flowAndSway 30s ease-in-out infinite;
+    --sway-amount: 50px;
+    --rotation: 0deg;
+}
 
+@keyframes flowAndSway {
+    0% {
+        transform: translateY(105vh) translateX(0) rotate(0deg);
+        opacity: 0.15;
+    }
+    5% {
+        opacity: 0.22;
+    }
+    25% {
+        transform: translateY(70vh) translateX(calc(var(--sway-amount) * -1)) rotate(90deg);
+        opacity: 0.25;
+    }
+    50% {
+        transform: translateY(40vh) translateX(var(--sway-amount)) rotate(180deg);
+        opacity: 0.22;
+    }
+    75% {
+        transform: translateY(10vh) translateX(calc(var(--sway-amount) * -0.5)) rotate(270deg);
+        opacity: 0.18;
+    }
+    95% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateY(-15vh) translateX(0) rotate(var(--rotation)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Additional gentle floating for variety */
 @keyframes float {
     0% {
         transform: translateY(100vh) rotate(0deg);
         opacity: 0;
     }
     10% {
-        opacity: 0.15;
+        opacity: 0.08;
     }
     90% {
-        opacity: 0.15;
+        opacity: 0.08;
     }
     100% {
-        transform: translateY(-100px) rotate(360deg);
+        transform: translateY(-50px) rotate(180deg);
         opacity: 0;
     }
 }

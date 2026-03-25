@@ -1,26 +1,50 @@
-﻿// Create floating friendship icons
-const friendshipIcons = ['ðŸ¤', 'ðŸ’™', 'ðŸŒŸ', 'âœ¨', 'ðŸ’«', 'ðŸ˜Š', 'ðŸŽˆ', 'ðŸŽ‰', 'ðŸ«¶', 'ðŸ’Œ'];
+﻿// Flowing friendship-themed background
+const symbols = ['🌸', '🌹', '🌺', '🌷', '💖', '💝', '⭐', '✨', '💫', '❀'];
+
 const floatingContainer = document.getElementById('floatingElements');
 
-for (let i = 0; i < 18; i++) {
+function createFloatingSymbol(initialPhase = 0) {
     const element = document.createElement('div');
-    element.className = 'floating-element';
-    element.textContent = friendshipIcons[Math.floor(Math.random() * friendshipIcons.length)];
+    element.className = 'floating-flower';
+    element.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
     element.style.left = Math.random() * 100 + '%';
-    element.style.fontSize = (Math.random() * 0.8 + 1.2) + 'rem';
-    floatingContainer.appendChild(element);
+
+    const size = Math.random() * 1.5 + 1;
+    element.style.fontSize = size + 'rem';
+
+    const duration = Math.random() * 15 + 25;
+    element.style.animationDuration = duration + 's';
+
+    const negativeDelay = -(initialPhase * duration);
+    element.style.animationDelay = negativeDelay + 's';
+
+    element.style.setProperty('--sway-amount', (Math.random() * 60 + 30) + 'px');
+    element.style.setProperty('--rotation', (Math.random() * 360) + 'deg');
+
+    return element;
+}
+
+for (let i = 0; i < 30; i++) {
+    const phase = Math.random();
+    const symbol = createFloatingSymbol(phase);
+    floatingContainer.appendChild(symbol);
 }
 
 setInterval(() => {
-    const elements = floatingContainer.querySelectorAll('.floating-element');
-    if (elements.length < 18) {
-        const element = document.createElement('div');
-        element.className = 'floating-element';
-        element.textContent = friendshipIcons[Math.floor(Math.random() * friendshipIcons.length)];
-        element.style.left = Math.random() * 100 + '%';
-        element.style.fontSize = (Math.random() * 0.8 + 1.2) + 'rem';
-        element.style.animationDelay = '0s';
-        element.style.animationDuration = (Math.random() * 5 + 18) + 's';
-        floatingContainer.appendChild(element);
+    const symbol = createFloatingSymbol(0);
+    floatingContainer.appendChild(symbol);
+
+    const allSymbols = floatingContainer.querySelectorAll('.floating-flower');
+    if (allSymbols.length > 35) {
+        allSymbols[0].remove();
     }
-}, 2000);
+}, 1500);
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.4s ease';
+    requestAnimationFrame(() => {
+        document.body.style.opacity = '1';
+    });
+});
